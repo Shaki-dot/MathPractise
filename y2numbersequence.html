@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Sequences</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            margin: 20px;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff6347;
+            font-size: 36px;
+            text-shadow: 2px 2px 5px #ff4500;
+        }
+
+        .question {
+            margin: 15px;
+            font-size: 22px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .question input {
+            padding: 10px;
+            width: 80px;
+            font-size: 18px;
+            margin: 5px;
+            text-align: center;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #ff4500;
+        }
+
+        .back-btn {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 20px;
+            color: #ff6347;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .incorrect {
+            color: red;
+        }
+
+        .results-summary {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Fill in the Missing Numbers</h1>
+
+<form id="quizForm">
+    <div class="question">
+        <label>1. Fill in the missing number: 1, 2, ___, 4, 5</label>
+        <input type="number" id="q1" required>
+    </div>
+
+    <div class="question">
+        <label>2. Fill in the missing number: 10, 9, ___, 7, 6</label>
+        <input type="number" id="q2" required>
+    </div>
+
+    <div class="question">
+        <label>3. Fill in the missing number: 15, 16, ___, 18, 19</label>
+        <input type="number" id="q3" required>
+    </div>
+
+    <div class="question">
+        <label>4. Fill in the missing number: 50, 49, ___, 47, 46</label>
+        <input type="number" id="q4" required>
+    </div>
+
+    <div class="question">
+        <label>5. Fill in the missing number: 25, ___, 27, 28, 29</label>
+        <input type="number" id="q5" required>
+    </div>
+
+    <div class="question">
+        <label>6. Fill in the missing number: 53, ___, 51, 50, 49</label>
+        <input type="number" id="q6" required>
+    </div>
+
+    <div class="question">
+        <label>7. Fill in the missing number: 32, ___, 30, 29, 28</label>
+        <input type="number" id="q7" required>
+    </div>
+
+    <div class="question">
+        <label>8. Fill in the missing number: 42, ___, 44, 45, 46</label>
+        <input type="number" id="q8" required>
+    </div>
+
+    <div class="question">
+        <label>9. Fill in the missing number: 24, ___, 22, 21, 20</label>
+        <input type="number" id="q9" required>
+    </div>
+
+    <div class="question">
+        <label>10. Fill in the missing number: 39, ___, 41, 42, 43</label>
+        <input type="number" id="q10" required>
+    </div>
+
+    <button type="button" class="submit-btn" onclick="submitAnswers()">Submit Answers</button>
+</form>
+
+<div id="resultsContainer" class="results-summary" style="display:none;"></div>
+
+<div class="back-btn" style="display:none;">
+    <button onclick="window.location.href='home.html'">Go Back to Main Page</button>
+</div>
+
+<script>
+    function submitAnswers() {
+        // Correct answers for the number sequences
+        var correctAnswers = [3, 8, 17, 48, 26, 50, 31, 43, 23, 40];
+        var userAnswers = [
+            parseInt(document.getElementById("q1").value),
+            parseInt(document.getElementById("q2").value),
+            parseInt(document.getElementById("q3").value),
+            parseInt(document.getElementById("q4").value),
+            parseInt(document.getElementById("q5").value),
+            parseInt(document.getElementById("q6").value),
+            parseInt(document.getElementById("q7").value),
+            parseInt(document.getElementById("q8").value),
+            parseInt(document.getElementById("q9").value),
+            parseInt(document.getElementById("q10").value),
+        ];
+
+        var correctCount = 0;
+        var results = '';
+
+        // Compare user's answers with correct answers and prepare the result
+        for (var i = 0; i < correctAnswers.length; i++) {
+            var isCorrect = userAnswers[i] === correctAnswers[i];
+            if (isCorrect) {
+                correctCount++;
+                results += `<div class="result correct">Question ${i + 1}: ✔ Correct! (Your answer: ${userAnswers[i]})</div>`;
+            } else {
+                results += `<div class="result incorrect">Question ${i + 1}: ✘ Incorrect (Your answer: ${userAnswers[i]}, Correct answer: ${correctAnswers[i]})</div>`;
+            }
+        }
+
+        // Display the results
+        document.getElementById('resultsContainer').style.display = 'block';
+        document.getElementById('resultsContainer').innerHTML = `
+            <div class="results-summary">You got ${correctCount} out of ${correctAnswers.length} correct!</div>
+            <div>${results}</div>
+        `;
+
+        // Show the "Go Back to Main Page" button
+        document.querySelector(".back-btn").style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

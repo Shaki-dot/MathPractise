@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math is Fun - Home</title>
+    <style>
+        /* Container for the background image */
+        .background-container {
+            width: 100%;
+            height: 50vh;  /* Half of the viewport height */
+            background-image: url("E:/2024 - 2025/Personal/Legacy/Trial/mathtime.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 36px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            margin-top: 20px;
+        }
+
+        .images-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            padding: 30px 0;
+        }
+
+        .images-container img {
+            width: 140px;
+            height: 140px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button {
+            padding: 15px 30px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background container with image -->
+    <div class="background-container">
+        <!-- Optionally, you can add a header or title here if needed -->
+    </div>
+
+    <div class="button-container">
+        <!-- Grade selection buttons with updated links -->
+        <button class="button" onclick="setGradeAndRedirect(2)">I am Grade 2</button>
+        <button class="button" onclick="setGradeAndRedirect(3)">I am Grade 3</button>
+    </div>
+
+    <div class="images-container">
+        <img src="E:/2024 - 2025/Personal/Legacy/Trial/Pic1.jpg" alt="Math is Fun">
+        <img src="E:/2024 - 2025/Personal/Legacy/Trial/Pic2.jpg" alt="Math is Fun">
+        <img src="E:/2024 - 2025/Personal/Legacy/Trial/Pic3.jpg" alt="Math is Fun">
+        <img src="E:/2024 - 2025/Personal/Legacy/Trial/Pic4.jpg" alt="Math is Fun">
+        <img src="E:/2024 - 2025/Personal/Legacy/Trial/Pic5.jpg" alt="Math is Fun">
+    </div>
+
+    <script>
+        // Function to set the grade and redirect to the appropriate page
+        function setGradeAndRedirect(grade) {
+            localStorage.setItem('selectedGrade', grade); // Store the selected grade in localStorage
+            window.location.href = `home.html`; // Redirect to the page with the grade parameter in the URL
+        }
+
+        // Check if a grade is already set and update the UI accordingly
+        window.onload = function() {
+            const selectedGrade = localStorage.getItem('selectedGrade');
+            if (selectedGrade) {
+                console.log("Selected Grade: ", selectedGrade); // You can use this value to adjust the UI
+                // Optionally, show which grade is selected
+            }
+        }
+
+    </script>
+
+</body>
+</html>

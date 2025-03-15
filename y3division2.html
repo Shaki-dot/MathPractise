@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Division</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column; /* Make body a column flexbox */
+      justify-content: flex-start;
+      align-items: center;
+      margin: 0;
+      background-color: #f4f4f4;
+      min-height: 100vh; /* Make sure the body takes at least the full screen height */
+      padding-bottom: 80px; /* Provide space at the bottom for the button */
+    }
+
+    .container {
+      text-align: center;
+      width: 100%;
+      max-width: 1000px;
+      flex: 1; /* This ensures the container takes up most of the page space */
+    }
+
+    /* Grid Layout for Questions */
+    .questions-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Two columns */
+      gap: 8px; /* Reduced gap between questions */
+      margin-top: 25px;
+    }
+
+    .question {
+      background-color: #fff;
+      padding: 14px;
+      border-radius: 7px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .divisor-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .divisor-button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .divisor-button:hover {
+      background-color: #45a049;
+    }
+
+    input[type="number"] {
+      padding: 8px;
+      font-size: 18px;
+      width: 60px;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .result {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .incorrect {
+      color: red;
+    }
+
+/* Styling for the back button at the bottom */
+.back-btn {
+  position: fixed; /* Fix the button at a specific position on the screen */
+  bottom: 20px; /* Position the button 20px from the bottom */
+  left: 50%; /* Center the button horizontally */
+  transform: translateX(-50%); /* Fine-tune to center the button */
+  padding: 13px 28px; /* Adjust padding to make the button bigger */
+  font-size: 16px; /* Adjust font size */
+  background-color: #4CAF50; /* Set background color to green */
+  color: white;
+  border: none;
+  border-radius: 6px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+.back-btn:hover {
+  background-color: #45a049; /* Darker green when hovering */
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Division - How well you know?</h1>
+        <!-- Grid Container for Questions -->
+    <div class="questions-container">
+      <!-- Question 1 -->
+      <div class="question" id="question1">
+        <p>What is the result of dividing <strong id="current-number1">30</strong> by one of the following divisors?</p>
+        <div class="divisor-container" id="divisors1">
+          <button class="divisor-button" onclick="setDivisor(3, 30, 1)">3</button>
+          <button class="divisor-button" onclick="setDivisor(5, 30, 1)">5</button>
+          <button class="divisor-button" onclick="setDivisor(6, 30, 1)">6</button>
+          <button class="divisor-button" onclick="setDivisor(10, 30, 1)">10</button>
+        </div>
+        <input type="number" id="answer1" placeholder="Answer">
+        <button onclick="checkAnswer(1)">Submit Answer</button>
+        <div class="result" id="result1"></div>
+      </div>
+      <!-- Question 2 -->
+      <div class="question" id="question2">
+        <p>What is the result of dividing <strong id="current-number2">18</strong> by one of the following divisors?</p>
+        <div class="divisor-container" id="divisors2">
+          <button class="divisor-button" onclick="setDivisor(9, 18, 2)">9</button>
+          <button class="divisor-button" onclick="setDivisor(2, 18, 2)">2</button>
+          <button class="divisor-button" onclick="setDivisor(3, 18, 2)">3</button>
+          <button class="divisor-button" onclick="setDivisor(6, 18, 2)">6</button>
+        </div>
+        <input type="number" id="answer2" placeholder="Answer">
+        <button onclick="checkAnswer(2)">Submit Answer</button>
+        <div class="result" id="result2"></div>
+      </div>
+      <!-- Question 3 -->
+      <div class="question" id="question3">
+        <p>What is the result of dividing <strong id="current-number3">24</strong> by one of the following divisors?</p>
+        <div class="divisor-container" id="divisors3">
+          <button class="divisor-button" onclick="setDivisor(3, 24, 3)">3</button>
+          <button class="divisor-button" onclick="setDivisor(8, 24, 3)">8</button>
+          <button class="divisor-button" onclick="setDivisor(6, 24, 3)">6</button>
+          <button class="divisor-button" onclick="setDivisor(4, 24, 3)">4</button>
+        </div>
+        <input type="number" id="answer3" placeholder="Answer">
+        <button onclick="checkAnswer(3)">Submit Answer</button>
+        <div class="result" id="result3"></div>
+      </div>
+      <!-- Question 4 -->
+      <div class="question" id="question4">
+        <p>What is the result of dividing <strong id="current-number4">16</strong> by one of the following divisors?</p>
+        <div class="divisor-container" id="divisors4">
+          <button class="divisor-button" onclick="setDivisor(2, 16, 4)">2</button>
+          <button class="divisor-button" onclick="setDivisor(8, 16, 4)">8</button>
+          <button class="divisor-button" onclick="setDivisor(4, 16, 4)">4</button>
+        </div>
+        <input type="number" id="answer4" placeholder="Answer">
+        <button onclick="checkAnswer(4)">Submit Answer</button>
+        <div class="result" id="result4"></div>
+      </div>
+      <!-- Question 5 -->
+      <div class="question" id="question5">
+        <p>What is the result of dividing <strong id="current-number5">40</strong> by one of the following divisors?</p>
+        <div class="divisor-container" id="divisors5">
+          <button class="divisor-button" onclick="setDivisor(5, 40, 5)">5</button>
+          <button class="divisor-button" onclick="setDivisor(4, 40, 5)">4</button>
+          <button class="divisor-button" onclick="setDivisor(8, 40, 5)">8</button>
+          <button class="divisor-button" onclick="setDivisor(10, 40, 5)">10</button>
+        </div>
+        <input type="number" id="answer5" placeholder="Answer">
+        <button onclick="checkAnswer(5)">Submit Answer</button>
+        <div class="result" id="result5"></div>
+      </div>
+      <!-- Question 6 -->
+      <div class="question" id="question6">
+        <p>What is the result of dividing <strong id="current-number6">20</strong> by one of the following divisors?</p>
+        <div class="divisor-container" id="divisors6">
+          <button class="divisor-button" onclick="setDivisor(2, 20, 6)">2</button>
+          <button class="divisor-button" onclick="setDivisor(4, 20, 6)">4</button>
+          <button class="divisor-button" onclick="setDivisor(5, 20, 6)">5</button>
+          <button class="divisor-button" onclick="setDivisor(10, 20, 6)">10</button>
+        </div>
+        <input type="number" id="answer6" placeholder="Answer">
+        <button onclick="checkAnswer(6)">Submit Answer</button>
+        <div class="result" id="result6"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Main Page Button -->
+  <button class="back-btn" onclick="window.location.href='home.html?grade=' + localStorage.getItem('selectedGrade')">I am done with Dividing!</button>
+
+  <script>
+    let selectedDivisor = null;
+    let currentNumber = 30;
+    let correctAnswer = null;
+
+    // Function to set the divisor when a button is clicked
+    function setDivisor(divisor, number, questionId) {
+      selectedDivisor = divisor;
+      currentNumber = number;
+      correctAnswer = currentNumber / selectedDivisor;
+
+      // Update UI for the current question
+      document.getElementById(`current-number${questionId}`).textContent = currentNumber;
+
+      // Clear previous result and input for the current question
+      document.getElementById(`result${questionId}`).innerHTML = '';
+      document.getElementById(`answer${questionId}`).value = '';
+
+      // Change color of selected divisor button to yellow
+      const buttons = document.querySelectorAll(`#divisors${questionId} .divisor-button`);
+      buttons.forEach(button => button.style.backgroundColor = '#4CAF50');  // Reset all to green
+      event.target.style.backgroundColor = 'yellow';  // Set the selected to yellow
+    }
+
+    // Function to check the student's answer
+    function checkAnswer(questionId) {
+      const answer = document.getElementById(`answer${questionId}`).value;
+
+      if (selectedDivisor === null) {
+        alert('Please select a divisor first!');
+        return;
+      }
+
+      if (parseInt(answer) === correctAnswer) {
+        document.getElementById(`result${questionId}`).innerHTML = `<p class="correct">Correct! ${currentNumber} ÷ ${selectedDivisor} = ${correctAnswer}</p>`;
+      } else {
+        document.getElementById(`result${questionId}`).innerHTML = `<p class="incorrect">Incorrect. Try again!</p>`;
+      }
+    }
+  </script>
+
+</body>
+</html>

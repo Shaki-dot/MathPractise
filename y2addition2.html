@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Answer the following - 2-Digit Addition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .match-container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 0 auto;
+        }
+        .column {
+            width: 45%;
+        }
+        .list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .list-item {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .dropzone {
+            min-height: 50px;
+            border: 2px dashed #ccc;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        .correct {
+            background-color: #d4edda;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+        }
+        .feedback {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+        }
+        .answer-input {
+            padding: 8px;
+            margin: 5px 0;
+            font-size: 16px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .next-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .next-btn:hover {
+            background-color: #45a049;
+        }
+        .back-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .back-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h1>2-Digit Addition</h1>
+
+<div class="match-container">
+    <div class="column">
+        <h3>Questions</h3>
+        <ul id="questions" class="list">
+            <li class="list-item">14 + 5</li>
+            <li class="list-item">16 + 2</li>
+            <li class="list-item">7 + 13</li>
+            <li class="list-item">10 + 1</li>
+            <li class="list-item">42 + 8</li>
+            <li class="list-item">19 + 10</li>
+            <li class="list-item">27 + 5</li>
+            <li class="list-item">35 + 14</li>
+            <li class="list-item">17 + 3</li>
+            <li class="list-item">20 + 10</li>
+            <li class="list-item">17 + 12</li>
+            <li class="list-item">31 + 13</li>
+            <li class="list-item">12 + 13</li>
+            <li class="list-item">15 + 24</li>
+            <li class="list-item">41 + 6</li>
+            <li class="list-item">34 + 5</li>
+            <li class="list-item">46 + 3</li>
+            <li class="list-item">52 + 5</li>
+            <li class="list-item">27 + 52</li>
+            <li class="list-item">32 + 47</li>
+        </ul>
+    </div>
+
+    <div class="column">
+        <h3>Answers</h3>
+        <ul id="answers" class="list">
+            <li><input type="text" class="answer-input" id="answer-1" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-2" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-3" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-4" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-5" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-6" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-7" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-8" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-9" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-10" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-11" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-12" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-13" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-14" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-15" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-16" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-17" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-18" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-19" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-20" placeholder="Your answer here"></li>
+        </ul>
+    </div>
+</div>
+
+<div class="feedback" id="feedback"></div>
+
+<!-- Submit Button -->
+<button class="next-btn" onclick="checkAnswers()">Submit</button>
+
+<!-- Back to Main Page Button -->
+<button class="back-btn" onclick="window.location.href='home.html'">I am done with Addition!</button>
+
+<script>
+    // Correct answers
+    const correctAnswers = [19, 18, 20, 11, 50, 29, 32, 49, 20, 30, 29, 44, 25, 39, 47, 39, 49, 57, 77, 79];
+    
+    // Function to check answers
+    function checkAnswers() {
+        let isCorrect = true;
+        for (let i = 1; i <= 20; i++) {
+            const userAnswer = document.getElementById(`answer-${i}`).value;
+            const answerElement = document.getElementById(`answer-${i}`);
+            if (parseInt(userAnswer) === correctAnswers[i - 1]) {
+                answerElement.style.backgroundColor = '#d4edda'; // Correct
+            } else {
+                answerElement.style.backgroundColor = '#f8d7da'; // Incorrect
+                isCorrect = false;
+            }
+        }
+
+        // Feedback based on answers
+        if (isCorrect) {
+            document.getElementById('feedback').textContent = "All answers are correct!";
+        } else {
+            document.getElementById('feedback').textContent = "Some answers are incorrect. Try again.";
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match the Following - Addition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .match-container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 0 auto;
+        }
+        .column {
+            width: 45%;
+        }
+        .list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .list-item {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .dropzone {
+            min-height: 20px;
+            border: 2px dashed #ccc;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        .correct {
+            background-color: #d4edda;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+        }
+        .feedback {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+        }
+        .next-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .next-btn:hover {
+            background-color: #45a049;
+        }
+        .back-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .back-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Match the Following - Addition</h1>
+
+<div class="match-container">
+    <div class="column">
+        <h3>Questions</h3>
+        <ul id="questions" class="list">
+            <!-- List items will be populated dynamically -->
+        </ul>
+    </div>
+
+    <div class="column">
+        <h3>Answers</h3>
+        <ul id="answers" class="list">
+            <!-- Dropzones will be populated dynamically -->
+        </ul>
+    </div>
+</div>
+
+<div class="feedback" id="feedback"></div>
+
+<!-- Submit Button -->
+<button class="submit-btn" onclick="checkAnswers()">Submit</button>
+
+<!-- Next Button -->
+<button class="next-btn" onclick="goToNextPage()">Next</button>
+
+<!-- Back to Main Page Button -->
+<button class="back-btn" onclick="window.location.href='home.html?grade=' + localStorage.getItem('selectedGrade')">I am done with Addition!</button>
+
+<script>
+    // Questions and answers data
+    const questions = [
+        { question: "18 + 20", answer: 38 },
+        { question: "10 + 16", answer: 26 },
+        { question: "25 + 34", answer: 59 },
+        { question: "12 + 24", answer: 36 },
+        { question: "32 + 23", answer: 55 },
+        { question: "42 + 18", answer: 60 },
+        { question: "37 + 57", answer: 94 },
+        { question: "27 + 35", answer: 62 },
+        { question: "35 + 65", answer: 100 },
+        { question: "71 + 33", answer: 104 },
+    ];
+
+    const answers = [38, 26, 59, 36, 55, 60, 94, 62, 100, 104]; // Correct answers for the questions
+
+    // Function to shuffle the array
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+        }
+    }
+
+    // Shuffle the questions and answers
+    shuffleArray(questions);
+    shuffleArray(answers);
+
+    // Populate questions
+    const questionsList = document.getElementById('questions');
+    questions.forEach((q, index) => {
+        const li = document.createElement('li');
+        li.classList.add('list-item');
+        li.setAttribute('draggable', 'true');
+        li.setAttribute('data-answer', q.answer);
+        li.textContent = q.question;
+        questionsList.appendChild(li);
+    });
+
+    // Populate answers
+    const answersList = document.getElementById('answers');
+    answers.forEach((answer) => {
+        const li = document.createElement('li');
+        li.classList.add('dropzone');
+        li.setAttribute('data-correct', answer);
+        li.textContent = answer;
+        answersList.appendChild(li);
+    });
+
+    let draggedItem = null;
+
+    // Enable dragging of questions
+    const draggableItems = document.querySelectorAll('.list-item');
+    const dropzones = document.querySelectorAll('.dropzone');
+
+    draggableItems.forEach(item => {
+        item.addEventListener('dragstart', (e) => {
+            draggedItem = e.target;
+            e.target.style.opacity = 0.5;
+        });
+
+        item.addEventListener('dragend', (e) => {
+            e.target.style.opacity = 1;
+            draggedItem = null;
+        });
+    });
+
+    // Enable dropping on answer dropzones
+    dropzones.forEach(dropzone => {
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            const correctAnswer = parseInt(dropzone.getAttribute('data-correct'));
+            const userAnswer = parseInt(draggedItem.getAttribute('data-answer'));
+
+            if (userAnswer === correctAnswer) {
+                dropzone.textContent = draggedItem.textContent + " - Correct!";
+                dropzone.classList.add('correct');
+            } else {
+                dropzone.textContent = draggedItem.textContent + " - Incorrect!";
+                dropzone.classList.add('incorrect');
+            }
+
+            draggedItem.setAttribute('draggable', 'false');
+            draggedItem = null;
+        });
+    });
+
+    // Function to check answers
+    function checkAnswers() {
+        let isCorrect = true;
+        dropzones.forEach(dropzone => {
+            const correctAnswer = parseInt(dropzone.getAttribute('data-correct'));
+            const userAnswer = parseInt(dropzone.textContent.split(" - ")[0].split(" + ")[1]);
+            
+            if (userAnswer !== correctAnswer) {
+                dropzone.classList.add('incorrect');
+                isCorrect = false;
+            }
+        });
+
+        // Feedback based on answers
+        if (isCorrect) {
+            document.getElementById('feedback').textContent = "All answers are correct!";
+        } else {
+            document.getElementById('feedback').textContent = "Some answers are incorrect. Try again.";
+        }
+    }
+
+    // Function to navigate to the next page after checking the answers
+    function goToNextPage() {
+        checkAnswers();
+        window.location.href = 'y3addition2.html'; // Replace with your next page URL
+    }
+
+    // Check if grade is selected in localStorage, if not redirect to home
+    const selectedGrade = localStorage.getItem('selectedGrade');
+    if (!selectedGrade) {
+        window.location.href = 'home.html'; // Redirect to home if no grade is selected
+    }
+</script>
+
+</body>
+</html>

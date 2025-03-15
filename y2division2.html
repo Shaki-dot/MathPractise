@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Answer the following - Division</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .match-container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 0 auto;
+        }
+        .column {
+            width: 45%;
+        }
+        .list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .list-item {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .dropzone {
+            min-height: 50px;
+            border: 2px dashed #ccc;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        .correct {
+            background-color: #d4edda;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+        }
+        .feedback {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+        }
+        .answer-input {
+            padding: 8px;
+            margin: 5px 0;
+            font-size: 16px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .next-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .next-btn:hover {
+            background-color: #45a049;
+        }
+        .back-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .back-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Division</h1>
+
+<div class="match-container">
+    <div class="column">
+        <h3>Questions</h3>
+        <ul id="questions" class="list">
+            <li class="list-item">6 divide by 3</li>
+            <li class="list-item">21 divide by 3</li>
+            <li class="list-item">8 divide by 2</li>
+            <li class="list-item">3 divide by 3</li>
+            <li class="list-item">10 divide by 2</li>
+            <li class="list-item">24 divide by 3</li>
+            <li class="list-item">12 divide by 2</li>
+            <li class="list-item">16 divide by 2</li>
+            <li class="list-item">15 divide by 3</li>
+            <li class="list-item">20 divide by 10</li>
+            <li class="list-item">18 divide by 2</li>
+            <li class="list-item">27 divide by 3</li>
+            <li class="list-item">12 divide by 3</li>
+            <li class="list-item">9 divide by 3</li>
+            <li class="list-item">25 divide by 5</li>
+            <li class="list-item">14 divide by 2</li>
+            <li class="list-item">30 divide by 3</li>
+            <li class="list-item">20 divide by 5</li>
+            <li class="list-item">30 divide by 5</li>
+            <li class="list-item">20 divide by 2</li>
+        </ul>
+    </div>
+
+    <div class="column">
+        <h3>Answers</h3>
+        <ul id="answers" class="list">
+            <li><input type="text" class="answer-input" id="answer-1" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-2" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-3" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-4" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-5" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-6" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-7" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-8" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-9" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-10" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-11" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-12" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-13" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-14" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-15" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-16" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-17" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-18" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-19" placeholder="Your answer here"></li>
+            <li><input type="text" class="answer-input" id="answer-20" placeholder="Your answer here"></li>
+        </ul>
+    </div>
+</div>
+
+<div class="feedback" id="feedback"></div>
+
+<!-- Submit Button -->
+<button class="next-btn" onclick="checkAnswers()">Submit</button>
+
+<!-- Back to Main Page Button -->
+<button class="back-btn" onclick="window.location.href='home.html'">I am done with Division!</button>
+
+<script>
+    // Correct answers
+    const correctAnswers = [2, 7, 4, 1, 5, 8, 6, 8, 5, 2, 9, 9, 4, 3, 5, 7, 10, 4, 6, 10];
+    
+    // Function to check answers
+    function checkAnswers() {
+        let isCorrect = true;
+        for (let i = 1; i <= 20; i++) {
+            const userAnswer = document.getElementById(`answer-${i}`).value;
+            const answerElement = document.getElementById(`answer-${i}`);
+            if (parseInt(userAnswer) === correctAnswers[i - 1]) {
+                answerElement.style.backgroundColor = '#d4edda'; // Correct
+            } else {
+                answerElement.style.backgroundColor = '#f8d7da'; // Incorrect
+                isCorrect = false;
+            }
+        }
+
+        // Feedback based on answers
+        if (isCorrect) {
+            document.getElementById('feedback').textContent = "All answers are correct!";
+        } else {
+            document.getElementById('feedback').textContent = "Some answers are incorrect. Try again.";
+        }
+    }
+</script>
+
+</body>
+</html>

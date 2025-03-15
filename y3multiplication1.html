@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Practice Worksheet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .multiplication-wheel {
+            display: grid;
+            grid-template-columns: repeat(11, 100px); /* Adjusted to have 11 columns (0-10) */
+            grid-gap: 5px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .cell {
+            width: 70px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .header {
+            font-weight: bold;
+            background-color: #ffcc00;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        input {
+            width: 80%;
+            text-align: center;
+            font-size: 14px;
+            padding: 5px;
+        }
+
+        .cell input {
+            background-color: #e6f7ff;
+            border: none;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+  <h1>Multiplication Tables</h1>
+    <div>
+        <div class="multiplication-wheel">
+            <!-- Header Row -->
+            <div class="header">X</div>
+            <div class="header">1</div>
+            <div class="header">2</div>
+            <div class="header">3</div>
+            <div class="header">4</div>
+            <div class="header">5</div>
+            <div class="header">6</div>
+            <div class="header">7</div>
+            <div class="header">8</div>
+            <div class="header">9</div>
+            <div class="header">10</div>
+
+            <!-- Multiplication Rows -->
+            <!-- Row for 2 table -->
+            <div class="header">2</div>
+            <div class="cell"><input type="text" id="2x1" data-answer="2"></div>
+            <div class="cell"><input type="text" id="2x2" data-answer="4"></div>
+            <div class="cell"><input type="text" id="2x3" data-answer="6"></div>
+            <div class="cell"><input type="text" id="2x4" data-answer="8"></div>
+            <div class="cell"><input type="text" id="2x5" data-answer="10"></div>
+            <div class="cell"><input type="text" id="2x6" data-answer="12"></div>
+            <div class="cell"><input type="text" id="2x7" data-answer="14"></div>
+            <div class="cell"><input type="text" id="2x8" data-answer="16"></div>
+            <div class="cell"><input type="text" id="2x9" data-answer="18"></div>
+            <div class="cell"><input type="text" id="2x10" data-answer="20"></div>
+
+            <!-- Row for 3 table -->
+            <div class="header">3</div>
+            <div class="cell"><input type="text" id="3x1" data-answer="3"></div>
+            <div class="cell"><input type="text" id="3x2" data-answer="6"></div>
+            <div class="cell"><input type="text" id="3x3" data-answer="9"></div>
+            <div class="cell"><input type="text" id="3x4" data-answer="12"></div>
+            <div class="cell"><input type="text" id="3x5" data-answer="15"></div>
+            <div class="cell"><input type="text" id="3x6" data-answer="18"></div>
+            <div class="cell"><input type="text" id="3x7" data-answer="21"></div>
+            <div class="cell"><input type="text" id="3x8" data-answer="24"></div>
+            <div class="cell"><input type="text" id="3x9" data-answer="27"></div>
+            <div class="cell"><input type="text" id="3x10" data-answer="30"></div>
+
+            <!-- Row for 4 table -->
+            <div class="header">4</div>
+            <div class="cell"><input type="text" id="4x1" data-answer="4"></div>
+            <div class="cell"><input type="text" id="4x2" data-answer="8"></div>
+            <div class="cell"><input type="text" id="4x3" data-answer="12"></div>
+            <div class="cell"><input type="text" id="4x4" data-answer="16"></div>
+            <div class="cell"><input type="text" id="4x5" data-answer="20"></div>
+            <div class="cell"><input type="text" id="4x6" data-answer="24"></div>
+            <div class="cell"><input type="text" id="4x7" data-answer="28"></div>
+            <div class="cell"><input type="text" id="4x8" data-answer="32"></div>
+            <div class="cell"><input type="text" id="4x9" data-answer="36"></div>
+            <div class="cell"><input type="text" id="4x10" data-answer="40"></div>
+
+            <!-- Row for 5 table -->
+            <div class="header">5</div>
+            <div class="cell"><input type="text" id="5x1" data-answer="5"></div>
+            <div class="cell"><input type="text" id="5x2" data-answer="10"></div>
+            <div class="cell"><input type="text" id="5x3" data-answer="15"></div>
+            <div class="cell"><input type="text" id="5x4" data-answer="20"></div>
+            <div class="cell"><input type="text" id="5x5" data-answer="25"></div>
+            <div class="cell"><input type="text" id="5x6" data-answer="30"></div>
+            <div class="cell"><input type="text" id="5x7" data-answer="35"></div>
+            <div class="cell"><input type="text" id="5x8" data-answer="40"></div>
+            <div class="cell"><input type="text" id="5x9" data-answer="45"></div>
+            <div class="cell"><input type="text" id="5x10" data-answer="50"></div>
+
+            <!-- Row for 6 table -->
+            <div class="header">6</div>
+            <div class="cell"><input type="text" id="6x1" data-answer="6"></div>
+            <div class="cell"><input type="text" id="6x2" data-answer="12"></div>
+            <div class="cell"><input type="text" id="6x3" data-answer="18"></div>
+            <div class="cell"><input type="text" id="6x4" data-answer="24"></div>
+            <div class="cell"><input type="text" id="6x5" data-answer="30"></div>
+            <div class="cell"><input type="text" id="6x6" data-answer="36"></div>
+            <div class="cell"><input type="text" id="6x7" data-answer="42"></div>
+            <div class="cell"><input type="text" id="6x8" data-answer="48"></div>
+            <div class="cell"><input type="text" id="6x9" data-answer="54"></div>
+            <div class="cell"><input type="text" id="6x10" data-answer="60"></div>
+
+            <!-- Row for 7 table -->
+            <div class="header">7</div>
+            <div class="cell"><input type="text" id="7x1" data-answer="7"></div>
+            <div class="cell"><input type="text" id="7x2" data-answer="14"></div>
+            <div class="cell"><input type="text" id="7x3" data-answer="21"></div>
+            <div class="cell"><input type="text" id="7x4" data-answer="28"></div>
+            <div class="cell"><input type="text" id="7x5" data-answer="35"></div>
+            <div class="cell"><input type="text" id="7x6" data-answer="42"></div>
+            <div class="cell"><input type="text" id="7x7" data-answer="49"></div>
+            <div class="cell"><input type="text" id="7x8" data-answer="56"></div>
+            <div class="cell"><input type="text" id="7x9" data-answer="63"></div>
+            <div class="cell"><input type="text" id="7x10" data-answer="70"></div>
+
+            <!-- Row for 8 table -->
+            <div class="header">8</div>
+            <div class="cell"><input type="text" id="8x1" data-answer="8"></div>
+            <div class="cell"><input type="text" id="8x2" data-answer="16"></div>
+            <div class="cell"><input type="text" id="8x3" data-answer="24"></div>
+            <div class="cell"><input type="text" id="8x4" data-answer="32"></div>
+            <div class="cell"><input type="text" id="8x5" data-answer="40"></div>
+            <div class="cell"><input type="text" id="8x6" data-answer="48"></div>
+            <div class="cell"><input type="text" id="8x7" data-answer="56"></div>
+            <div class="cell"><input type="text" id="8x8" data-answer="64"></div>
+            <div class="cell"><input type="text" id="8x9" data-answer="72"></div>
+            <div class="cell"><input type="text" id="8x10" data-answer="80"></div>
+
+            <!-- Row for 9 table -->
+            <div class="header">9</div>
+            <div class="cell"><input type="text" id="9x1" data-answer="9"></div>
+            <div class="cell"><input type="text" id="9x2" data-answer="18"></div>
+            <div class="cell"><input type="text" id="9x3" data-answer="27"></div>
+            <div class="cell"><input type="text" id="9x4" data-answer="36"></div>
+            <div class="cell"><input type="text" id="9x5" data-answer="45"></div>
+            <div class="cell"><input type="text" id="9x6" data-answer="54"></div>
+            <div class="cell"><input type="text" id="9x7" data-answer="63"></div>
+            <div class="cell"><input type="text" id="9x8" data-answer="72"></div>
+            <div class="cell"><input type="text" id="9x9" data-answer="81"></div>
+            <div class="cell"><input type="text" id="9x10" data-answer="90"></div>
+
+            <!-- Row for 10 table -->
+            <div class="header">10</div>
+            <div class="cell"><input type="text" id="10x1" data-answer="10"></div>
+            <div class="cell"><input type="text" id="10x2" data-answer="20"></div>
+            <div class="cell"><input type="text" id="10x3" data-answer="30"></div>
+            <div class="cell"><input type="text" id="10x4" data-answer="40"></div>
+            <div class="cell"><input type="text" id="10x5" data-answer="50"></div>
+            <div class="cell"><input type="text" id="10x6" data-answer="60"></div>
+            <div class="cell"><input type="text" id="10x7" data-answer="70"></div>
+            <div class="cell"><input type="text" id="10x8" data-answer="80"></div>
+            <div class="cell"><input type="text" id="10x9" data-answer="90"></div>
+            <div class="cell"><input type="text" id="10x10" data-answer="100"></div>
+        </div>
+
+        <button onclick="checkAnswers()">Check Answers</button>
+
+        <button class="next-btn" onclick="nextPage()">Next</button>
+        <button class="back-btn" onclick="window.location.href='home.html?grade=' + localStorage.getItem('selectedGrade')">I am done with Tables!</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            let correctCount = 0;
+            let totalCount = 90; // 9 tables x 10 answers each
+
+            // Check each answer input element
+            const inputs = document.querySelectorAll("input[type='text']");
+            inputs.forEach(input => {
+                const correctAnswer = input.getAttribute("data-answer");
+                if (input.value == correctAnswer) {
+                    input.style.backgroundColor = "#d4edda"; // Green for correct
+                    correctCount++;
+                } else {
+                    input.style.backgroundColor = "#f8d7da"; // Red for incorrect
+                }
+            });
+
+            const resultDiv = document.getElementById("result");
+            if (correctCount === totalCount) {
+                resultDiv.innerHTML = `<span class="correct">Excellent! All answers are correct!</span>`;
+            } else {
+                resultDiv.innerHTML = `<span class="incorrect">You got ${correctCount} out of ${totalCount} correct. Keep practicing!</span>`;
+            }
+        }
+
+    // Function to navigate to the next page after checking the answers
+    function nextPage() {
+        // First, check the answers
+        checkAnswers();
+
+        // After checking, go to the next page
+        window.location.href = 'y3multiplication2.html'; // Replace with your next page URL
+    }
+    </script>
+</body>
+</html>

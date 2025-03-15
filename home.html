@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Practice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+        }
+        .round-btn {
+            width: 150px;
+            height: 150px;
+            background-color: grey;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+        }
+        .round-btn:hover {
+            background-color: white;
+        }
+        .round-btn img {
+            width: 130px;
+            height: 130px;
+        }
+        .btn-container {
+            margin-top: 110px;
+        }
+        .home-btn {
+            background-color: green;
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .home-btn:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+<center><h1><img src="E:/2024 - 2025/Personal/Legacy/Trial/Math.jpg" alt="Math Logo"></h1></center>
+
+<div class="btn-container">
+    <!-- NumberSequence Button -->
+    <button class="round-btn" id="numbersequenceBtn">
+        <img src="E:/2024 - 2025/Personal/Legacy/Trial/NumberSequence.png" alt="NumberSequence Icon">
+    </button>
+
+    <!-- Addition Button -->
+    <button class="round-btn" id="additionBtn">
+        <img src="E:/2024 - 2025/Personal/Legacy/Trial/Addition.jpg" alt="Addition Icon">
+    </button>
+
+    <!-- Subtraction Button -->
+    <button class="round-btn" id="subtractionBtn">
+        <img src="E:/2024 - 2025/Personal/Legacy/Trial/Subtraction.jpg" alt="Subtraction Icon">
+    </button>
+
+    <!-- Multiplication Button -->
+    <button class="round-btn" id="multiplicationBtn">
+        <img src="E:/2024 - 2025/Personal/Legacy/Trial/Multiplication.jpg" alt="Multiplication Icon">
+    </button>
+
+    <!-- Division Button -->
+    <button class="round-btn" id="divisionBtn">
+        <img src="E:/2024 - 2025/Personal/Legacy/Trial/Division.jpg" alt="Division Icon">
+    </button>
+</div>
+
+<!-- Back to Home Page Button -->
+<button class="home-btn" onclick="window.location.href='index.html'">Take me Home!</button>
+
+<script>
+    // Function to get the grade from the URL parameters
+    //const urlParams = new URLSearchParams(window.location.search);
+    //const grade = urlParams.get('grade');  // This will fetch the grade passed from home.html (e.g., grade=2 or grade=3)
+
+    // Get grade from localStorage
+    const selectedGrade = localStorage.getItem('selectedGrade');
+
+    // Get buttons
+    const numbersequenceButton = document.getElementById('numbersequenceBtn');
+    const additionButton = document.getElementById('additionBtn');
+    const subtractionButton = document.getElementById('subtractionBtn');
+    const multiplicationButton = document.getElementById('multiplicationBtn');
+    const divisionButton = document.getElementById('divisionBtn');
+
+    // Check if grade is available in localStorage, and assign button actions accordingly
+    if (selectedGrade) {
+        if (selectedGrade === '2') {
+            // Grade 2 buttons
+            numbersequenceButton.onclick = function() {
+                window.location.href = 'y2numbersequence.html';
+            };
+            additionButton.onclick = function() {
+                window.location.href = 'y2addition1.html';
+            };
+            subtractionButton.onclick = function() {
+                window.location.href = 'y2subtraction1.html';
+            };
+            multiplicationButton.onclick = function() {
+                window.location.href = 'y2multiplication1.html';
+            };
+            divisionButton.onclick = function() {
+                window.location.href = 'y2division1.html';
+            };
+        } else if (selectedGrade === '3') {
+            // Grade 3 buttons
+            numbersequenceButton.onclick = function() {
+                window.location.href = 'y3numbersequence.html';
+            };
+            additionButton.onclick = function() {
+                window.location.href = 'y3addition1.html';
+            };
+            subtractionButton.onclick = function() {
+                window.location.href = 'y3subtraction1.html';
+            };
+            multiplicationButton.onclick = function() {
+                window.location.href = 'y3multiplication1.html';
+            };
+            divisionButton.onclick = function() {
+                window.location.href = 'y3division1.html';
+            };
+        } else {
+            console.log("Invalid or missing grade in localStorage.");
+        }
+    } else {
+        console.log("Grade is not set in localStorage.");
+    }
+
+</script>
+
+</body>
+</html>
+		
