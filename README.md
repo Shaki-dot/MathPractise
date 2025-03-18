@@ -1,2 +1,2 @@
-![Addition]([https://github.com/Shaki-dot/MathPractise/blob/main/Addition.jpg])
+![Addition]([https://raw.githubusercontent.com/Shaki-dot/MathPractise/refs/heads/main/Addition.jpg])
 
